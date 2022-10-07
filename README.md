@@ -12,6 +12,7 @@ $password_hash = hash($password + get_salt($username), $str);
 
 
 
+
 ## CWE-89: Неправильная нейтрализация специальных символов, используемых в SQL команде*
 ```php
 $query  = "SELECT * FROM `users` WHERE user = '$user' AND password = '$pass';";
@@ -26,11 +27,13 @@ $row = get_row($data);
 
 
 
+
 ## CWE-759: *Использование одностороннего хеширования без соли*
 **Исправление:** Использовать соль, которая будет храниться в базе данных.
 ```php
 get_salt($username)
 ```
+
 
 
 
@@ -44,6 +47,7 @@ $pass = $_GET[ 'password' ];
 $username = $_POST['username'];
 $password = $_POST['password'];
 ```
+
 
 
 
