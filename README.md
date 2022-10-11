@@ -57,3 +57,16 @@ $password = $_POST['password'];
  - Реализация тайм-аута
  - Блокировка целевой учетной записи
  - Требование вычислительной задачи со стороны пользователя.
+ 
+
+
+
+ ## CWE-799: *Неправильный контроль частоты взаимодействия с хранилищем*
+```php
+$sample  = $mysqli->query('SELECT * FROM users WHERE user = ' . $user . ' AND password = ' . $password;
+```
+**Исправление:** Использовать остановку программы на случайное время.
+```php
+$sample  = $mysqli->query('SELECT * FROM users WHERE user = ' . $user . ' AND password = ' . $password;
+sleep(rand(2, 4))
+```
