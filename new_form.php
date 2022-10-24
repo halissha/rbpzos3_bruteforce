@@ -53,6 +53,7 @@ $user     = $_POST['username'];                           //CWE-598 (Get with co
 $password = crypt($_POST['password'], $someSalt);         //CWE-327 (Weak crypto alg (changed to sha256)), CWE-759 (One-way hash without salt (hash with salt))
 
 $sample  = $mysqli->query('SELECT * FROM users WHERE user = ' . $user . ' AND password = ' . $password;
+sleep(rand(2, 4))
 $blocked = blocked($username); //CWE-307 (Improper Restriction of Excessive Authentication Attempts (add attempts count with time restriction))
 
 if ($sample->num_rows() == 1 && !$blocked)
