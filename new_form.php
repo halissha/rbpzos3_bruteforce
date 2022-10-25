@@ -47,8 +47,11 @@ function failed()
 
 //------------------------main---------------------------
 if (!valid('username') || !valid('password') || !isset($_POST['Login']))      //CWE-89 (Lack of injection verification (validate before))
-    return;                                               
-
+    return;
+       
+if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25){
+  echo "ERROR";
+	
 $user = htmlspecialchars ($_POST[ 'username' ]);          //CWE-598 (Get with confidential data (change to POST)) //CWE-79 (Improper Neutralization of Input During Web Page Generation)
 $password = crypt(htmlspecialchars ($_POST['password']), $someSalt)); //CWE-327 (Weak crypto alg (changed to sha256)), CWE-759 (One-way hash without salt (hash with salt))
 
