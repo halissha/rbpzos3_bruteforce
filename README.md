@@ -73,7 +73,7 @@ if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25){
 
 
 
-## CWE-79 Неправильная нейтрализация ввода во время создания веб-страницы
+## CWE-79 Неправильная нейтрализация ввода во время создания веб-страницы (XSS)
  ```php
 $user = htmlspecialchars ($_POST[ 'username' ]);
 $pass = htmlspecialchars ($_POST[ 'password' )];
