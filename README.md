@@ -13,7 +13,7 @@ $password_hash = hash($password + get_salt($username), $str);
 
 
 
-## CWE-89: Неправильная нейтрализация специальных символов, используемых в SQL команде*
+## CWE-89: Неправильная нейтрализация специальных символов, используемых в SQL команде
 ```php
 $query  = "SELECT * FROM `users` WHERE user = '$user' AND password = '$pass';";
 ```
