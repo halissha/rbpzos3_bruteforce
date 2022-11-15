@@ -78,3 +78,7 @@ if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25){
 $user = htmlspecialchars ($_POST[ 'username' ]);
 $pass = htmlspecialchars ($_POST[ 'password' )];
 ```
+
+
+
+## CWE-654 Выбор единственного решения по обеспечению безопасности
