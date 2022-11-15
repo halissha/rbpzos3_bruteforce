@@ -65,7 +65,7 @@ if ($userData['failsCount'] >= $attemptsBeforeBlocking)
 
 
 
- ## CWE-20 Недостаточная валидация входных данных*
+ ## CWE-20 Недостаточная валидация входных данных
  ```php
 if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25){
    echo "ERROR";
