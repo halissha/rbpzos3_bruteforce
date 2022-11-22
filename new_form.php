@@ -75,7 +75,7 @@ $sample->bindParam(2, $password, PDO::PARAM_STR);
 $data = get_row($sample);
 
 $blocked = blocked($username); //CWE-307 (Improper Restriction of Excessive Authentication Attempts (add attempts count with time restriction))
-if ($data->row_count() == 1 && !$blocked && $code == $_SESSION['rand_code'])
+if ($data->row_count() == 1 && !$blocked && $code == $captcha)
     succeed($username);
 
 else if (!$blocked)
