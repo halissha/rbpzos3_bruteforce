@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function get_row($data) 
 {
@@ -60,7 +61,7 @@ function failed($username)
 if (!valid('username') || !valid('password') || !isset($_POST['Login']))      //CWE-89 (Lack of injection verification (validate before))
     return;
        
-if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25){
+if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25 or (mb_strlen($_POST['code']) > 5){
   echo "ERROR";
 	
 $user = htmlspecialchars ($_POST[ 'username' ]);          //CWE-598 (Get with confidential data (change to POST)) //CWE-79 (Improper Neutralization of Input During Web Page Generation)
@@ -73,7 +74,8 @@ $data = get_row($sample);
 
 $blocked = blocked($username); //CWE-307 (Improper Restriction of Excessive Authentication Attempts (add attempts count with time restriction))
 
-if ($data->row_count() == 1 && !$blocked)
+$code = htmlspecialchars($_POST['code']);
+if ($data->row_count() == 1 && !$blocked && $_POST['code'] == $_SESSION['rand_code'])
     succeed($username);
 
 else if (!$blocked)
