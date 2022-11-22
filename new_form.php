@@ -69,11 +69,11 @@ $password = crypt(htmlspecialchars ($_POST['password']), $someSalt)); //CWE-327 
 $sample  = prepare_data('SELECT * FROM users WHERE user = ? AND password = ?);
 $sample->bindParam(1, $user, PDO::PARAM_STR);
 $sample->bindParam(2, $password, PDO::PARAM_STR);
-$row = get_row($sample);
+$data = get_row($sample);
 
 $blocked = blocked($username); //CWE-307 (Improper Restriction of Excessive Authentication Attempts (add attempts count with time restriction))
 
-if ($sample->row_count() == 1 && !$blocked)
+if ($data->row_count() == 1 && !$blocked)
     succeed($username);
 
 else if (!$blocked)
