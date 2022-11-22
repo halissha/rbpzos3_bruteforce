@@ -66,6 +66,8 @@ if((mb_strlen($_POST['user']) > 50) or (mb_strlen($_POST['pass']) > 25 or (mb_st
 	
 $user = htmlspecialchars ($_POST[ 'username' ]);          //CWE-598 (Get with confidential data (change to POST)) //CWE-79 (Improper Neutralization of Input During Web Page Generation)
 $password = crypt(htmlspecialchars ($_POST['password']), $someSalt)); //CWE-327 (Weak crypto alg (changed to sha256)), CWE-759 (One-way hash without salt (hash with salt))
+$code = htmlspecialchars($_POST['code']);
+$captcha = htmlspecialchars($_SESSION['rand_code']);
 
 $sample  = prepare_data('SELECT * FROM users WHERE user = ? AND password = ?);
 $sample->bindParam(1, $user, PDO::PARAM_STR);
@@ -73,9 +75,7 @@ $sample->bindParam(2, $password, PDO::PARAM_STR);
 $data = get_row($sample);
 
 $blocked = blocked($username); //CWE-307 (Improper Restriction of Excessive Authentication Attempts (add attempts count with time restriction))
-
-$code = htmlspecialchars($_POST['code']);
-if ($data->row_count() == 1 && !$blocked && $_POST['code'] == $_SESSION['rand_code'])
+if ($data->row_count() == 1 && !$blocked && $code == $_SESSION['rand_code'])
     succeed($username);
 
 else if (!$blocked)
